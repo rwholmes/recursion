@@ -1,4 +1,4 @@
-var validObjects = [
+var arrayWithValidElements = [
   9,
   null,
   true,
@@ -23,10 +23,14 @@ var validObjects = [
 ];
 
 // used for stringifyJSON spec
-var weirdObjects = [
+// hint: JSON does not allow you to stringify functions or
+// undefined values, so you should skip those key/value pairs.
+var objectWithInvalidAttributes = [
   {
-    "functions": function(){},
-    "undefined": undefined
+    "here-is-a-function": function(){},
+    "here-is-an-integer": 1,
+    "here-is-undefined": undefined,
+    "here-is-a-string": "sup?"
   }
 ];
 
@@ -97,7 +101,7 @@ var extraCreditStrings = [
 ];
 
 // used for stringifyJSON and parseJSON specs
-var invalidStrings = [
+var arrayWithInvalidStrings = [
   '["foo", "bar"',
   '["foo", "bar\\"]'
 ];
