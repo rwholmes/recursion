@@ -1,4 +1,4 @@
-var arrayWithValidElements = [
+var stringifiableValues = [
   9,
   null,
   true,
@@ -25,12 +25,12 @@ var arrayWithValidElements = [
 // used for stringifyJSON spec
 // hint: JSON does not allow you to stringify functions or
 // undefined values, so you should skip those key/value pairs.
-var objectWithInvalidAttributes = [
+var nonStringifiableValues = [
   {
-    "here-is-a-function": function(){},
-    "here-is-an-integer": 1,
-    "here-is-undefined": undefined,
-    "here-is-a-string": "sup?"
+    'a-function': function(){},
+    'an-integer': 1,
+    'the-value-undefined': undefined,
+    'a-string': 'sup?'
   }
 ];
 
