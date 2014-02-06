@@ -4,8 +4,11 @@
 
 // but you don't so you're going to have to write it from scratch:
 var stringifyJSON = function (obj) {
+	if (obj === undefined) {
+		return undefined;
+	}
 	// Case for simple non-object input or null
-	if (typeof obj !== 'object' || obj === null) {
+	else if (typeof obj !== 'object' || obj === null) {
 		// Case for if string
   		if (typeof obj === 'string') {
   			obj = '"' + obj + '"';
