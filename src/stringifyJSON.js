@@ -31,20 +31,24 @@ var stringifyJSON = function (obj) {
 			if (type === 'string') {
 				val = '"' + val + '"';
 			}
-			// If the value is an object we need to stringify that object using recursion
+			// If the value is an object need to stringify that object using recursion
 			else if (type === 'object') {
 				val = stringifyJSON(val);
 			}
 			if (Array.isArray(obj)) {
+				// If obj is an array push only the value
 				objContents.push(val);
 			}
 			else {
+				// If its an object push the key as well
 				objContents.push('"' + key + '":' + val);
 			}
 		}
+		// If obj is an array add square brackets
 		if (Array.isArray(obj)) {
 			var result = '[' + objContents + ']';
 		}
+		// If obj is an object add curly brackets
 		else {
 			var result = '{' + objContents + '}';
 		}
