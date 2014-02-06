@@ -27,14 +27,8 @@ var stringifyJSON = function (obj) {
 			// Going to use recursion to call the top part if the val is a string/num
 			val = obj[key];
 			type = typeof val;
-			// Case for value is a string
-			if (type === 'string') {
-				val = '"' + val + '"';
-			}
-			// If the value is an object need to stringify that object using recursion
-			else if (type === 'object') {
-				val = stringifyJSON(val);
-			}
+			// Recursively call stringify on value
+			val = stringifyJSON(val);
 			if (Array.isArray(obj)) {
 				// If obj is an array push only the value
 				objContents.push(val);
