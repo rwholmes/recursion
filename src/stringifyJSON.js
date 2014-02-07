@@ -1,9 +1,9 @@
 // this is what you would do if you liked things to be easy:
-// var stringifyJSON = JSON.stringify;
+//var stringifyJSON = JSON.stringify;
 
 // but you don't so you're going to have to write it from scratch:
 var stringifyJSON = function (obj) {
-	if (obj === undefined) {
+	if (obj === undefined || typeof obj === 'function') {
 		return undefined;
 	}
 	// Case for simple non-object input or null
@@ -25,14 +25,16 @@ var stringifyJSON = function (obj) {
 			// Going to use recursion to call the top part if the val is a string/num
 			val = obj[key];
 			// Recursively call stringify on value
-			val = stringifyJSON(val);
-			if (Array.isArray(obj)) {
-				// If obj is an array push only the value
-				objContents.push(val);
-			}
-			else {
-				// If its an object push the key as well
-				objContents.push('"' + key + '":' + val);
+			if (val !== undefined && typeof val !== 'function') {
+				val = stringifyJSON(val);
+				if (Array.isArray(obj)) {
+					// If obj is an array push only the value
+					objContents.push(val);
+				}
+				else {
+					// If its an object push the key as well
+					objContents.push('"' + key + '":' + val);
+				}
 			}
 		}
 		// If obj is an array add square brackets
