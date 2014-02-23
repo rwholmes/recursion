@@ -6,34 +6,20 @@
 // But in stead we're going to implement it from scratch:
 var getElementsByClassName = function (className) {
   var results = [];
-  var innerFunc = function (startnode) {
-    if (startnode === undefined) {
-    	var startNode = document.body;
-    }
-    else {
-    	var startNode = startnode;
-    }
-    var currentNode;
-    for (var i=0; i < startNode.childNodes.length; i++) {
-      currentNode = startNode.childNodes[i];
-    	// Check if the node has children and if it does search them
+  // need to create an inner function that has startnode param
+  var innerFunc = function(startNode) {
+    // Loop through the child nodes
+    _.each(startNode.childNodes, function(currentNode) {
       if (currentNode.hasChildNodes()) {
         innerFunc(currentNode);
       }
-      // Check that there is a classlist and then search for match
-    	if (currentNode.classList !== undefined) {
-    		var hasClass = currentNode.classList.contains(className);
-    		// Check if the node has the classname we're looking for
-    		if (hasClass) {
-    			results.push(currentNode);
-          //console.log(results);
-    		}
-    	}
-    }
+      if (currentNode.classList !== undefined && currentNode.classList.contains(className)) {
+        results.push(currentNode);
+      }
+    });
   }
-  innerFunc();
-  // Results
-  return results;  
+  innerFunc(document.body);
+  return results;
 };
 
 
